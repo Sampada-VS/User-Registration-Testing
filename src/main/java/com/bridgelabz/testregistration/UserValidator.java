@@ -16,5 +16,10 @@ public class UserValidator {
 	public boolean validateMobileNo(String mobileNo) {
 		return Pattern.compile(MOBILE_NO_PATTERN).matcher(mobileNo).matches();	
 	}
-
+	public boolean validatePassword(String password) {
+		return (Pattern.compile("[\\w\\W]{8,}").matcher(password).matches() &&
+			Pattern.compile(".*[A-Z].*").matcher(password).matches() &&
+			Pattern.compile(".*[0-9].*").matcher(password).matches() &&
+			password.length()-password.replaceAll("\\W", "").length() == 1);
+	}
 }
