@@ -18,16 +18,25 @@ public class TestLastNameValidator {
 		validator = null;
 	}
 	@Test
-	public void givenLastName_WhenProper_thenAssertionHappy() {
+	public void givenLastName_WhenProper_thenAssertionHappy() throws UserValidatorException  {
 		assertTrue(validator.validateLastName("Shivkar"));
 	}
 	@Test
 	public void givenLastName_WhenLessThan3Letters_thenAssertionSad() {
-		assertFalse(validator.validateLastName("Sh"));
+		try {
+			assertFalse(validator.validateLastName("Sh"));
+		} catch (UserValidatorException e) {
+			e.printStackTrace();
+		}
+
 	}
 	@Test
 	public void givenLastName_WhenNotStartWithUppercase_thenAssertionSad() {
-		assertFalse(validator.validateLastName("shivkar"));
+		try {
+			assertFalse(validator.validateLastName("shivkar"));
+		} catch (UserValidatorException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

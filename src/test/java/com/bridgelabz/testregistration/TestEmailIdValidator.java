@@ -29,10 +29,14 @@ public class TestEmailIdValidator {
 	
 	@Test
 	public void testEmailId() {
-		assertEquals(result,validator.validateEmailId(emailId));
+		try {
+			assertEquals(result,validator.validateEmailId(emailId));
+		} catch (UserValidatorException e) {
+			e.printStackTrace();
+		}
 	}
 	@Parameters
-	public static Collection emailIds() {
+	public static Collection<Object[]> emailIds() {
 		return Arrays.asList(
 			new Object[][] { {"abc@yahoo.com", true},
 							 {"abc-100@yahoo.com", true},
